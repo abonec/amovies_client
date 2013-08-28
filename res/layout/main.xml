@@ -7,8 +7,8 @@
     <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="New EditText"
-            android:id="@+id/editText" android:layout_gravity="center"/>
+            android:text="http://amovies.tv/serials/408-pravosudie-dekstera.html"
+            android:id="@+id/editText" android:layout_gravity="center" android:singleLine="true"/>
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

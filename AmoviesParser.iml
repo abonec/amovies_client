@@ -15,6 +15,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="net.sourceforge.htmlcleaner:htmlcleaner:2.6" level="project" />
   </component>
 </module>
 
