@@ -23,10 +23,7 @@ public class ResultActivity extends Activity {
     private String GetIntentString() {
         Intent intent = getIntent();
         if(intent != null) {
-            ClipData data = intent.getClipData();
-            if(data != null){
-                return data.getItemAt(0).getText().toString();
-            }
+            return intent.getStringExtra(Intent.EXTRA_TEXT);
         }
         return null;
     }
