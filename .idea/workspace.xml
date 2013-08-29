@@ -28,18 +28,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6da1e882-0b06-4b96-b264-b94d1d0bd46c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParserApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/result_activity.xml" afterPath="$PROJECT_DIR$/res/layout/result_activity.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AmoviesParser.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/AndroidManifest.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377798390042" ignored="false" />
-    <file path="/ResultActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377804253092" ignored="false" />
+    <file path="/ResultActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377804852079" ignored="false" />
     <file path="/a.dummy" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377689483216" ignored="false" />
     <file path="/Dummy.txt" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377786608643" ignored="false" />
     <file path="/GetActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377692826527" ignored="false" />
@@ -179,12 +173,12 @@
       <file leaf-file-name="ResultActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="59" selection-start="3593" selection-end="3593" vertical-scroll-proportion="0.54569894">
+            <state line="64" column="60" selection-start="2433" selection-end="2433" vertical-scroll-proportion="0.4032258">
               <folding>
-                <element signature="e#1345#1800#0" expanded="true" />
-                <element signature="e#1789#1790#0" expanded="true" />
-                <element signature="e#3028#3239#0" expanded="true" />
-                <element signature="e#3224#3225#0" expanded="true" />
+                <element signature="e#1305#1774#0" expanded="true" />
+                <element signature="e#1763#1764#0" expanded="true" />
+                <element signature="e#3152#3363#0" expanded="true" />
+                <element signature="e#3348#3349#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -695,7 +689,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946378" sideWeight="0.67022413" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24860558" sideWeight="0.6016" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -772,10 +766,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="57" column="0" selection-start="1882" selection-end="1882" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#1345#1800#0" expanded="true" />
-            <element signature="e#1789#1790#0" expanded="true" />
-            <element signature="e#3028#3239#0" expanded="true" />
-            <element signature="e#3224#3225#0" expanded="true" />
+            <element signature="e#1305#1774#0" expanded="true" />
+            <element signature="e#1763#1764#0" expanded="true" />
+            <element signature="e#3152#3363#0" expanded="true" />
+            <element signature="e#3348#3349#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -893,12 +887,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="59" selection-start="3593" selection-end="3593" vertical-scroll-proportion="0.54569894">
+        <state line="64" column="60" selection-start="2433" selection-end="2433" vertical-scroll-proportion="0.4032258">
           <folding>
-            <element signature="e#1345#1800#0" expanded="true" />
-            <element signature="e#1789#1790#0" expanded="true" />
-            <element signature="e#3028#3239#0" expanded="true" />
-            <element signature="e#3224#3225#0" expanded="true" />
+            <element signature="e#1305#1774#0" expanded="true" />
+            <element signature="e#1763#1764#0" expanded="true" />
+            <element signature="e#3152#3363#0" expanded="true" />
+            <element signature="e#3348#3349#0" expanded="true" />
           </folding>
         </state>
       </provider>

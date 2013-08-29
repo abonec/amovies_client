@@ -26,7 +26,6 @@ import java.util.List;
 public class ResultActivity extends Activity {
     private Context context;
     private ListView resultListView;
-    private AmovieParser.Serial serial;
     private ProgressBar resultProgressBar;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class ResultActivity extends Activity {
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AmovieParser.SerialEpisode episode = serial.episodes.get(position);
+                AmovieParser.SerialEpisode episode = application().serial.episodes.get(position);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setDataAndType(Uri.parse(episode.p720.toString()), "video/mp4");
                 startActivity(intent);
@@ -50,8 +49,11 @@ public class ResultActivity extends Activity {
         loadOrParseSeries();
     }
 
+    private AmoviesParserApplication application(){
+        return (AmoviesParserApplication) getApplication();
+    }
     private void loadOrParseSeries() {
-        AmoviesParserApplication application = (AmoviesParserApplication)getApplication();
+        AmoviesParserApplication application = application();
         String url = getIntentString();
         if(application.serial == null || !application.serial.amoviesUrl.toString().equals(url)){
             try {
@@ -60,6 +62,7 @@ public class ResultActivity extends Activity {
             }
         }else{
             populateResult(application.serial);
+            resultProgressBar.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -91,8 +94,7 @@ public class ResultActivity extends Activity {
 
         @Override
         protected void onPostExecute(AmovieParser.Serial serial) {
-            AmoviesParserApplication application = (AmoviesParserApplication)ResultActivity.this.getApplication();
-            application.serial = serial;
+            application().serial = serial;
             resultProgressBar.setVisibility(View.INVISIBLE);
             populateResult(serial);
         }
