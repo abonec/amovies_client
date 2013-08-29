@@ -40,7 +40,11 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
         TextView text = (TextView)row.findViewById(R.id.episode);
         ImageView poster = (ImageView)row.findViewById(R.id.poster);
         text.setText(episode.p720.toString());
-        new ImageDownloadClass(poster).execute(episode.poster);
+        if(episode.posterBitmap != null){
+            poster.setImageBitmap(episode.posterBitmap);
+        }else{
+            new ImageDownloadClass(poster, episode).execute();
+        }
 
 
 
@@ -61,12 +65,13 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
         this.list = objects;
     }
 
-    private class ImageDownloadClass extends AsyncTask<URL, Void, Bitmap> {
+    private class ImageDownloadClass extends AsyncTask<Void, Void, Bitmap> {
         private final ImageView poster;
-        public ImageDownloadClass(ImageView poster) {
+        private final AmovieParser.SerialEpisode episode;
+        public ImageDownloadClass(ImageView poster, AmovieParser.SerialEpisode episode) {
             this.poster = poster;
+            this.episode = episode;
         }
-
         /**
          * <p>Runs on the UI thread after {@link #doInBackground}. The
          * specified result is the value returned by {@link #doInBackground}.</p>
@@ -80,15 +85,16 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
          */
         @Override
         protected void onPostExecute(Bitmap bitmap) {
+            episode.posterBitmap = bitmap;
             poster.setImageBitmap(bitmap);
         }
 
         @Override
-        protected Bitmap doInBackground(URL... params) {
+        protected Bitmap doInBackground(Void... params) {
             Bitmap result = null;
 
             try {
-                InputStream in = params[0].openStream();
+                InputStream in = episode.poster.openStream();
                 result = BitmapFactory.decodeStream(in);
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

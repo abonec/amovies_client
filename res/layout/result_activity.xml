@@ -11,6 +11,14 @@
             android:text="New Text"
             android:id="@+id/text_view"/>
 
+    <ProgressBar
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/resultProgressBar"
+            android:layout_gravity="center"
+            android:progress="0"
+            style="@android:style/Widget.ProgressBar.Horizontal"/>
+
     <ListView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

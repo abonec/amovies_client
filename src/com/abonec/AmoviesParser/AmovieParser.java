@@ -1,4 +1,5 @@
 package com.abonec.AmoviesParser;
+import android.graphics.Bitmap;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
@@ -19,53 +20,16 @@ public class AmovieParser {
 
     HtmlCleaner cleaner;
     URL amoviesUrl;
+    ProgressUpdate progressCallback;
+    int episodesLength;
     public AmovieParser(URL htmlPage){
         cleaner = new HtmlCleaner();
         amoviesUrl = htmlPage;
     }
 
-    public class Serial {
-        public URL amoviesUrl;
-        public List<SerialEpisode> episodes;
-        public Serial(URL url){
-            amoviesUrl = url;
-            episodes = new ArrayList<SerialEpisode>();
-        }
-        public void pushEpisode(SerialEpisode episode){
-            episodes.add(episode);
-        }
+    public interface ProgressUpdate {
+        void progressUpdate(int current, int max);
     }
-    public class SerialEpisode {
-        public URL vkLink;
-        public URL poster;
-        public URL p720;
-        public URL p480;
-        public URL p360;
-        public URL p240;
-        public SerialEpisode(String url, String episodePoster) {
-            try {
-                vkLink = new URL(url);
-                poster = new URL(episodePoster);
-            } catch (MalformedURLException e) {
-            }
-        }
-
-        public void pushLink(String link) {
-            try {
-                if(link.matches(".*720\\..*$")){
-                    p720 = new URL(link);
-                } else if (link.matches(".*480\\..*$")){
-                    p480 = new URL(link);
-                } else if (link.matches(".*360\\..*$")){
-                    p360 = new URL(link);
-                } else if (link.matches(".*240\\..*$")){
-                    p240 = new URL(link);
-                }
-            } catch (MalformedURLException e) {
-            }
-        }
-    }
-
     List<String> getVkLinks(){
         List<String> vkLinks = new ArrayList<String>();
         try {
@@ -84,6 +48,7 @@ public class AmovieParser {
     Serial parseSerial() {
         Serial serial = new Serial(amoviesUrl);
         List<String> links = getVkLinks();
+        episodesLength = links.size();
         for(String link : links) {
             TagNode cleaner = getCleaner(link);
             if (cleaner == null) {
@@ -96,6 +61,7 @@ public class AmovieParser {
                 episode.pushLink(tagNode.getAttributeByName("src"));
             }
             serial.pushEpisode(episode);
+            progressCallback.progressUpdate(serial.episodes.size(), episodesLength);
 
         }
         return serial;
@@ -131,4 +97,47 @@ public class AmovieParser {
         }
         return videoTag.getAttributeByName("poster");
     }
+    public class Serial {
+        public URL amoviesUrl;
+        public List<SerialEpisode> episodes;
+        public Serial(URL url){
+            amoviesUrl = url;
+            episodes = new ArrayList<SerialEpisode>();
+        }
+        public void pushEpisode(SerialEpisode episode){
+            episodes.add(episode);
+        }
+    }
+    public class SerialEpisode {
+        public URL vkLink;
+        public URL poster;
+        public Bitmap posterBitmap;
+        public URL p720;
+        public URL p480;
+        public URL p360;
+        public URL p240;
+        public SerialEpisode(String url, String episodePoster) {
+            try {
+                vkLink = new URL(url);
+                poster = new URL(episodePoster);
+            } catch (MalformedURLException e) {
+            }
+        }
+
+        public void pushLink(String link) {
+            try {
+                if(link.matches(".*720\\..*$")){
+                    p720 = new URL(link);
+                } else if (link.matches(".*480\\..*$")){
+                    p480 = new URL(link);
+                } else if (link.matches(".*360\\..*$")){
+                    p360 = new URL(link);
+                } else if (link.matches(".*240\\..*$")){
+                    p240 = new URL(link);
+                }
+            } catch (MalformedURLException e) {
+            }
+        }
+    }
+
 }

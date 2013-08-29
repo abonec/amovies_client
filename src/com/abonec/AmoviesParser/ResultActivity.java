@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class ResultActivity extends Activity {
     private Context context;
     private ListView resultListView;
     private AmovieParser.Serial serial;
+    private ProgressBar resultProgressBar;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class ResultActivity extends Activity {
         String url = getIntentString();
         TextView textView = (TextView)findViewById(R.id.text_view);
         textView.setText(url);
+        this.resultProgressBar = (ProgressBar)findViewById(R.id.resultProgressBar);
         resultListView = (ListView)findViewById(R.id.resultListView);
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -44,10 +47,19 @@ public class ResultActivity extends Activity {
                 startActivity(intent);
             }
         });
-        try {
-            new GetEpisodesTask().execute(new URL(url));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        loadOrParseSeries();
+    }
+
+    private void loadOrParseSeries() {
+        AmoviesParserApplication application = (AmoviesParserApplication)getApplication();
+        String url = getIntentString();
+        if(application.serial == null || !application.serial.amoviesUrl.toString().equals(url)){
+            try {
+                new GetEpisodesTask().execute(new URL(url));
+            } catch (MalformedURLException e) {
+            }
+        }else{
+            populateResult(application.serial);
         }
     }
 
@@ -59,19 +71,30 @@ public class ResultActivity extends Activity {
         return null;
     }
 
+    private void populateResult(AmovieParser.Serial serial){
+        ResultEpisodesAdapter adapter = new ResultEpisodesAdapter(context, R.id.episode, serial.episodes);
+        resultListView.setAdapter(adapter);
+    }
+
     private class GetEpisodesTask extends AsyncTask<URL, Integer, AmovieParser.Serial> {
         @Override
         protected AmovieParser.Serial doInBackground(URL... params) {
             AmovieParser parser = new AmovieParser(params[0]);
+            parser.progressCallback = new AmovieParser.ProgressUpdate() {
+                @Override
+                public void progressUpdate(int current, int max) {
+                    publishProgress(current, max);
+                }
+            };
             return parser.parseSerial();
         }
 
         @Override
         protected void onPostExecute(AmovieParser.Serial serial) {
-            ResultActivity.this.serial = serial;
-            ResultEpisodesAdapter adapter = new ResultEpisodesAdapter(context, R.id.episode, serial.episodes);
-            resultListView.setAdapter(adapter);
-
+            AmoviesParserApplication application = (AmoviesParserApplication)ResultActivity.this.getApplication();
+            application.serial = serial;
+            resultProgressBar.setVisibility(View.INVISIBLE);
+            populateResult(serial);
         }
 
         /**
@@ -84,7 +107,9 @@ public class ResultActivity extends Activity {
          */
         @Override
         protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);    //To change body of overridden methods use File | Settings | File Templates.
+            int current = values[0];
+            int max = values[1];
+            resultProgressBar.setProgress((int)(current*1.0/max * 100));
         }
     }
 }
