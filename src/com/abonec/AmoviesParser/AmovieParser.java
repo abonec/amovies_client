@@ -4,6 +4,7 @@ import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
@@ -23,42 +24,111 @@ public class AmovieParser {
         amoviesUrl = htmlPage;
     }
 
+    public class Serial {
+        public URL amoviesUrl;
+        public List<SerialEpisode> episodes;
+        public Serial(URL url){
+            amoviesUrl = url;
+            episodes = new ArrayList<SerialEpisode>();
+        }
+        public void pushEpisode(SerialEpisode episode){
+            episodes.add(episode);
+        }
+    }
     public class SerialEpisode {
+        public URL vkLink;
+        public URL poster;
+        public URL p720;
+        public URL p480;
+        public URL p360;
+        public URL p240;
+        public SerialEpisode(String url, String episodePoster) {
+            try {
+                vkLink = new URL(url);
+                poster = new URL(episodePoster);
+            } catch (MalformedURLException e) {
+            }
+        }
+
+        public void pushLink(String link) {
+            try {
+                if(link.matches(".*720\\..*$")){
+                    p720 = new URL(link);
+                } else if (link.matches(".*480\\..*$")){
+                    p480 = new URL(link);
+                } else if (link.matches(".*360\\..*$")){
+                    p360 = new URL(link);
+                } else if (link.matches(".*240\\..*$")){
+                    p240 = new URL(link);
+                }
+            } catch (MalformedURLException e) {
+            }
+        }
     }
 
-    List<String> getVkLinks() throws IOException {
+    List<String> getVkLinks(){
         List<String> vkLinks = new ArrayList<String>();
         try {
-            Object[] nodes = cleaner.clean(amoviesUrl).evaluateXPath("//select[@id=\"series\"]/option");
+            Object[] nodes = getByXpath(amoviesUrl, "//select[@id=\"series\"]/option");
             for(Object node : nodes) {
-                vkLinks.add(((TagNode)node).getAttributes().get("value"));
+                vkLinks.add(((TagNode)node).getAttributeByName("value"));
             }
 
             String str = "";
         } catch (XPatherException e) {
+        } catch (IOException e) {
         }
         return vkLinks;
     }
 
-    List<SerialEpisode> getEpisodes() throws IOException {
-        List<SerialEpisode> episodes = new ArrayList<SerialEpisode>();
+    Serial parseSerial() {
+        Serial serial = new Serial(amoviesUrl);
         List<String> links = getVkLinks();
         for(String link : links) {
-            try {
-                TagNode rootNode = cleaner.clean(new URL(link));
-                Object[] nodes = rootNode.evaluateXPath("//object/param[@name=\"flashvars\"]");
-                for(Object node : nodes){
-                    TagNode tagNode = (TagNode) node;
-                    String str = "";
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            } catch (XPatherException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            TagNode cleaner = getCleaner(link);
+            if (cleaner == null) {
+                continue;
             }
-        }
+            Object[] nodes = getResolutionsNodes(cleaner);
+            SerialEpisode episode = new SerialEpisode(link, getPoster(cleaner));
+            for(Object node : nodes){
+                TagNode tagNode = (TagNode) node;
+                episode.pushLink(tagNode.getAttributeByName("src"));
+            }
+            serial.pushEpisode(episode);
 
-        return episodes;
+        }
+        return serial;
+    }
+
+    private Object[] getResolutionsNodes(TagNode cleaner) {
+        try {
+            return cleaner.evaluateXPath("//video/source");
+        } catch (XPatherException e) {
+            return new Object[0];
+        }
+    }
+
+    private Object[] getByXpath(URL url, String xpath) throws IOException, XPatherException {
+
+        return cleaner.clean(url).evaluateXPath(xpath);
+
+    }
+
+    private TagNode getCleaner(String link){
+        try {
+            return cleaner.clean(new URL(link));
+        } catch (IOException e) {
+            return null;
+        }
+    }
+    private String getPoster(TagNode cleaner){
+        TagNode videoTag = null;
+        try {
+            videoTag = (TagNode) cleaner.evaluateXPath("//video")[0];
+        } catch (XPatherException e) {
+            return null;
+        }
+        return videoTag.getAttributeByName("poster");
     }
 }
