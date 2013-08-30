@@ -7,7 +7,7 @@
     <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="http://amovies.tv/serials-rus-sub/402-pravosudie-dekstera.html"
+            android:text="http://amovies.tv/cartoons/473-kop-s-toporom.html"
             android:id="@+id/editText" android:layout_gravity="center" android:singleLine="true"/>
     <Button
             android:layout_width="fill_parent"

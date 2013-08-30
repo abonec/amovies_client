@@ -100,12 +100,21 @@ public class AmovieParser {
     public class Serial {
         public URL amoviesUrl;
         public List<SerialEpisode> episodes;
+        private int lastId = 1;
+        private Map<Integer, SerialEpisode> episodesMap;
         public Serial(URL url){
             amoviesUrl = url;
             episodes = new ArrayList<SerialEpisode>();
+            episodesMap = new HashMap<Integer, SerialEpisode>();
         }
         public void pushEpisode(SerialEpisode episode){
+            episode.id = lastId;
+            lastId++;
+            episodesMap.put(episode.id, episode);
             episodes.add(episode);
+        }
+        public SerialEpisode getEpisodeById(int id){
+            return episodesMap.get(id);
         }
     }
     public class SerialEpisode {
@@ -116,6 +125,7 @@ public class AmovieParser {
         public URL p480;
         public URL p360;
         public URL p240;
+        public int id;
         public SerialEpisode(String url, String episodePoster) {
             try {
                 vkLink = new URL(url);

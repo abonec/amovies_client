@@ -22,6 +22,7 @@ public class GetActivity extends Activity {
 
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra(Intent.EXTRA_TEXT, ed.getText().toString());
+        intent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         startActivity(intent);
 
     }
