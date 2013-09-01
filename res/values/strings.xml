@@ -4,4 +4,6 @@
     <string name="action_search">Search</string>
     <string name="open_file">Open with resolution:</string>
     <string name="open_video_button">Open</string>
+    <string name="parse_site">Go</string>
+    <string name="reload">reload</string>
 </resources>

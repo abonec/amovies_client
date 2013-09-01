@@ -39,7 +39,7 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
 
         TextView text = (TextView)row.findViewById(R.id.episode);
         ImageView poster = (ImageView)row.findViewById(R.id.poster);
-        text.setText(episode.p720.toString());
+        text.setText(episode.getLinkByQuality("720p"));
         if(episode.posterBitmap != null){
             poster.setImageBitmap(episode.posterBitmap);
         }else{
@@ -78,7 +78,7 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
          * <p/>
          * <p>This method won't be invoked if the task was cancelled.</p>
          *
-         * @param result The result of the operation computed by {@link #doInBackground}.
+         * @param bitmap The result of the operation computed by {@link #doInBackground}.
          * @see #onPreExecute
          * @see #doInBackground
          * @see #onCancelled(Object)
@@ -94,7 +94,7 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
             Bitmap result = null;
 
             try {
-                InputStream in = episode.poster.openStream();
+                InputStream in = (new URL(episode.poster).openStream());
                 result = BitmapFactory.decodeStream(in);
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

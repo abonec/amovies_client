@@ -5,9 +5,12 @@ import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -102,14 +105,14 @@ public class AmovieParser {
         public List<SerialEpisode> episodes;
         private int lastId = 1;
         private Map<Integer, SerialEpisode> episodesMap;
+
         public Serial(URL url){
             amoviesUrl = url;
             episodes = new ArrayList<SerialEpisode>();
-            episodesMap = new HashMap<Integer, SerialEpisode>();
+            this.episodesMap = new HashMap<Integer, SerialEpisode>();
         }
         public void pushEpisode(SerialEpisode episode){
-            episode.id = lastId;
-            lastId++;
+            episode.id = ++lastId;
             episodesMap.put(episode.id, episode);
             episodes.add(episode);
         }
@@ -118,34 +121,32 @@ public class AmovieParser {
         }
     }
     public class SerialEpisode {
-        public URL vkLink;
-        public URL poster;
+        public String vkLink;
+        public String poster;
         public Bitmap posterBitmap;
-        public URL p720;
-        public URL p480;
-        public URL p360;
-        public URL p240;
         public int id;
+        private Map<String, String> urls;
+        private Pattern urlPattern = Pattern.compile(".*(720|480|360|240)\\..*$");
         public SerialEpisode(String url, String episodePoster) {
-            try {
-                vkLink = new URL(url);
-                poster = new URL(episodePoster);
-            } catch (MalformedURLException e) {
-            }
+            this.vkLink = url;
+            this.poster = episodePoster;
+            this.urls = new HashMap<String, String>();
+        }
+        public String[] qualities(){
+            String[] keys = urls.keySet().toArray(new String[0]);
+            Arrays.sort(keys, Collections.reverseOrder());
+            return keys;
+        }
+
+        public String getLinkByQuality(String quality){
+            return urls.get(quality);
         }
 
         public void pushLink(String link) {
-            try {
-                if(link.matches(".*720\\..*$")){
-                    p720 = new URL(link);
-                } else if (link.matches(".*480\\..*$")){
-                    p480 = new URL(link);
-                } else if (link.matches(".*360\\..*$")){
-                    p360 = new URL(link);
-                } else if (link.matches(".*240\\..*$")){
-                    p240 = new URL(link);
-                }
-            } catch (MalformedURLException e) {
+            Matcher matcher = urlPattern.matcher(link);
+            if(matcher.matches()){
+                String quality = matcher.group(1) + "p";
+                urls.put(quality, link);
             }
         }
     }

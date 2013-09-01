@@ -1,22 +1,21 @@
 package com.abonec.AmoviesParser;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -64,14 +63,25 @@ public class ResultActivity extends Activity {
 
     private ProgressBar resultProgressBar;
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_activity);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         this.context = this;
         String url = getIntentString();
         TextView textView = (TextView)findViewById(R.id.text_view);
         textView.setText(url);
         this.resultProgressBar = (ProgressBar)findViewById(R.id.resultProgressBar);
+        setListners();
+        loadOrParseSeries(false);
+    }
+
+    private void setListners() {
         resultListView = (ListView)findViewById(R.id.resultListView);
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -82,16 +92,15 @@ public class ResultActivity extends Activity {
                 startActivity(intent);
             }
         });
-        loadOrParseSeries();
     }
 
     private AmoviesParserApplication application(){
         return (AmoviesParserApplication) getApplication();
     }
-    private void loadOrParseSeries() {
+    private void loadOrParseSeries(boolean force) {
         AmoviesParserApplication application = application();
         String url = getIntentString();
-        if(application.serial == null || !application.serial.amoviesUrl.toString().equals(url)){
+        if(!force && (application.serial == null || !application.serial.amoviesUrl.toString().equals(url))){
             try {
                 new GetEpisodesTask().execute(new URL(url));
             } catch (MalformedURLException e) {

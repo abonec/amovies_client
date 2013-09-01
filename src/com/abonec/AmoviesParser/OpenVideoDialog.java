@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,12 +19,14 @@ import android.widget.Spinner;
  * To change this template use File | Settings | File Templates.
  */
 public class OpenVideoDialog extends Activity {
-    private final String[] qualities = {"720p", "480p", "360p", "280p"};
+    private String[] qualities;
     private AmovieParser.SerialEpisode episode;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.open_video_dialog);
+
         episode = getEpisode();
+        qualities = episode.qualities();
         final Spinner spinner = (Spinner)findViewById(R.id.chose_resolution_spinner);
         ArrayAdapter<String> spinner_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, qualities);
         spinner.setAdapter(spinner_adapter);
@@ -52,22 +55,7 @@ public class OpenVideoDialog extends Activity {
     }
 
     private void openWithQuality(int positionResolution) {
-        String link = null;
-        switch (positionResolution){
-            case 0:
-                link = episode.p720.toString();
-                break;
-            case 1:
-                link = episode.p480.toString();
-                break;
-            case 2:
-                link = episode.p360.toString();
-                break;
-            case 3:
-                link = episode.p240.toString();
-                break;
-        }
-        openVideo(link);
+        openVideo(episode.getLinkByQuality(qualities[positionResolution]));
     }
 
     private void openVideo(String link) {

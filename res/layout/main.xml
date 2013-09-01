@@ -12,7 +12,7 @@
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="@string/parse_site"
             android:id="@+id/button" android:layout_gravity="center" android:clickable="true"
             android:onClick="onButtonClick"/>
 </LinearLayout>
