@@ -28,21 +28,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6da1e882-0b06-4b96-b264-b94d1d0bd46c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/action_bar_menu.xml" afterPath="$PROJECT_DIR$/res/menu/action_bar_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AmoviesParser.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/AndroidManifest.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378044150408" ignored="false" />
-    <file path="/ResultActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378045216102" ignored="false" />
+    <file path="/ResultActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378046531025" ignored="false" />
     <file path="/a.dummy" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377689483216" ignored="false" />
     <file path="/Dummy.txt" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377840313330" ignored="false" />
     <file path="/GetActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377692826527" ignored="false" />
     <file path="/AmovieParser.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378043325427" ignored="false" />
     <file path="/GetEpisodesTask.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377704853410" ignored="false" />
-    <file path="/fragment.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377804031081" ignored="false" />
+    <file path="/fragment.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378046538068" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/html5/xhtml5.xsd" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779323" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xhtml1-transitional.xsd" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779323" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/relaxng.rng" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779323" ignored="false" />
@@ -204,12 +201,13 @@
       <file leaf-file-name="ResultActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="43" selection-start="4247" selection-end="4247" vertical-scroll-proportion="0.54317546">
+            <state line="63" column="45" selection-start="2525" selection-end="2525" vertical-scroll-proportion="0.4178273">
               <folding>
-                <element signature="e#3336#3797#0" expanded="true" />
-                <element signature="e#3786#3787#0" expanded="true" />
-                <element signature="e#5451#5662#0" expanded="true" />
-                <element signature="e#5647#5648#0" expanded="true" />
+                <element signature="docComment;method#onCreateOptionsMenu#0;class#ResultActivity#0" expanded="false" />
+                <element signature="e#3999#4460#0" expanded="true" />
+                <element signature="e#4449#4450#0" expanded="true" />
+                <element signature="e#6174#6385#0" expanded="true" />
+                <element signature="e#6370#6371#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -921,12 +919,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="43" selection-start="4247" selection-end="4247" vertical-scroll-proportion="0.54317546">
+        <state line="63" column="45" selection-start="2525" selection-end="2525" vertical-scroll-proportion="0.4178273">
           <folding>
-            <element signature="e#3336#3797#0" expanded="true" />
-            <element signature="e#3786#3787#0" expanded="true" />
-            <element signature="e#5451#5662#0" expanded="true" />
-            <element signature="e#5647#5648#0" expanded="true" />
+            <element signature="docComment;method#onCreateOptionsMenu#0;class#ResultActivity#0" expanded="false" />
+            <element signature="e#3999#4460#0" expanded="true" />
+            <element signature="e#4449#4450#0" expanded="true" />
+            <element signature="e#6174#6385#0" expanded="true" />
+            <element signature="e#6370#6371#0" expanded="true" />
           </folding>
         </state>
       </provider>

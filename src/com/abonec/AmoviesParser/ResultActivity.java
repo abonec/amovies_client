@@ -25,6 +25,7 @@ public class ResultActivity extends Activity {
     private Context context;
     private ListView resultListView;
     private ResultEpisodesAdapter adapter;
+    private ProgressBar resultProgressBar;
 
     /**
      * Initialize the contents of the Activity's standard options menu.  You
@@ -56,16 +57,28 @@ public class ResultActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar_menu, menu);
+        SearchView searchView = (SearchView)menu.findItem(R.id.action_search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                loadOrParseSeries(true, query);
+                return false;  //To change body of implemented methods use File | Settings | File Templates.
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;  //To change body of implemented methods use File | Settings | File Templates.
+            }
+        });
         return super.onCreateOptionsMenu(menu);    //To change body of overridden methods use File | Settings | File Templates.
     }
 
-    private ProgressBar resultProgressBar;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_update:
-                loadOrParseSeries(true);
+                loadOrParseSeries(true, null);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -82,7 +95,7 @@ public class ResultActivity extends Activity {
         textView.setText(url);
         this.resultProgressBar = (ProgressBar)findViewById(R.id.resultProgressBar);
         setListners();
-        loadOrParseSeries(false);
+        loadOrParseSeries(false, null);
     }
 
     private void setListners() {
@@ -96,21 +109,24 @@ public class ResultActivity extends Activity {
                 startActivity(intent);
             }
         });
+
     }
 
     private AmoviesParserApplication application(){
         return (AmoviesParserApplication) getApplication();
     }
-    private void loadOrParseSeries(boolean force) {
+    private void loadOrParseSeries(boolean force, String url) {
         AmoviesParserApplication application = application();
         resultProgressBar.setVisibility(View.VISIBLE);
         resultProgressBar.setProgress(0);
-        if(force){
+        if(force || url != null){
             application.serial.episodes.clear();
             adapter.notifyDataSetChanged();
             application.serial = null;
         }
-        String url = getIntentString();
+        if(url == null){
+            url = getIntentString();
+        }
         if((application.serial == null || !application.serial.amoviesUrl.toString().equals(url))){
             try {
                 new GetEpisodesTask().execute(new URL(url));
