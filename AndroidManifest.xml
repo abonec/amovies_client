@@ -21,6 +21,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/*" />
             </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value="com.abonec.AmoviesParser.GetActivity" />
         </activity>
         <activity android:name=".OpenVideoDialog"
             android:theme="@android:style/Theme.Holo.Dialog">

@@ -9,10 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,6 +24,7 @@ import java.net.URL;
 public class ResultActivity extends Activity {
     private Context context;
     private ListView resultListView;
+    private ResultEpisodesAdapter adapter;
 
     /**
      * Initialize the contents of the Activity's standard options menu.  You
@@ -65,7 +63,13 @@ public class ResultActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);    //To change body of overridden methods use File | Settings | File Templates.
+        switch (item.getItemId()){
+            case R.id.action_update:
+                loadOrParseSeries(true);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -99,8 +103,15 @@ public class ResultActivity extends Activity {
     }
     private void loadOrParseSeries(boolean force) {
         AmoviesParserApplication application = application();
+        resultProgressBar.setVisibility(View.VISIBLE);
+        resultProgressBar.setProgress(0);
+        if(force){
+            application.serial.episodes.clear();
+            adapter.notifyDataSetChanged();
+            application.serial = null;
+        }
         String url = getIntentString();
-        if(!force && (application.serial == null || !application.serial.amoviesUrl.toString().equals(url))){
+        if((application.serial == null || !application.serial.amoviesUrl.toString().equals(url))){
             try {
                 new GetEpisodesTask().execute(new URL(url));
             } catch (MalformedURLException e) {
@@ -121,6 +132,7 @@ public class ResultActivity extends Activity {
 
     private void populateResult(AmovieParser.Serial serial){
         ResultEpisodesAdapter adapter = new ResultEpisodesAdapter(context, R.id.episode, serial.episodes);
+        this.adapter = adapter;
         resultListView.setAdapter(adapter);
     }
 
