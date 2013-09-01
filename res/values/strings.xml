@@ -6,4 +6,5 @@
     <string name="open_video_button">Open</string>
     <string name="parse_site">Go</string>
     <string name="reload">reload</string>
+    <string name="has_been_deprecated">has been deprecated</string>
 </resources>

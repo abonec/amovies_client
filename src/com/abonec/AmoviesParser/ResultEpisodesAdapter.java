@@ -39,7 +39,11 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
 
         TextView text = (TextView)row.findViewById(R.id.episode);
         ImageView poster = (ImageView)row.findViewById(R.id.poster);
-        text.setText(episode.getLinkByQuality("720p"));
+        String title = episode.title;
+        if(episode.deprecated){
+            title += " изъята.";
+        }
+        text.setText(title);
         if(episode.posterBitmap != null){
             poster.setImageBitmap(episode.posterBitmap);
         }else{

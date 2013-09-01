@@ -28,7 +28,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6da1e882-0b06-4b96-b264-b94d1d0bd46c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AmoviesParser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,9 +41,9 @@
     <file path="/a.dummy" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377689483216" ignored="false" />
     <file path="/Dummy.txt" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377840313330" ignored="false" />
     <file path="/GetActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377692826527" ignored="false" />
-    <file path="/AmovieParser.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378043325427" ignored="false" />
+    <file path="/AmovieParser.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378052386199" ignored="false" />
     <file path="/GetEpisodesTask.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377704853410" ignored="false" />
-    <file path="/fragment.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378046538068" ignored="false" />
+    <file path="/fragment.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378050267270" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/html5/xhtml5.xsd" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779323" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xhtml1-transitional.xsd" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779323" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/relaxng.rng" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779323" ignored="false" />
@@ -59,7 +63,7 @@
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/XMLSchema-instance.xsd" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779324" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xslt-2_0.xsd" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779324" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/android/lib/android.jar!/org/jetbrains/android/android.xsd" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377775432692" ignored="false" />
-    <file path="/ResultEpisodesAdapter.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378042435838" ignored="false" />
+    <file path="/ResultEpisodesAdapter.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378052631925" ignored="false" />
     <file path="/resultListItem.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377791932362" ignored="false" />
     <file path="/AmoviesParserApplication.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377798302266" ignored="false" />
     <file path="/action_bar_menu.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378043945151" ignored="false" />
@@ -148,6 +152,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="0" selection-start="470" selection-end="470" vertical-scroll-proportion="-6.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AmoviesParserApplication.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParserApplication.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -157,22 +173,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/GetActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="5" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AmovieParser.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AmovieParser.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="57" selection-start="4319" selection-end="4319" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#954#962#0" expanded="true" />
-              </folding>
+            <state line="36" column="0" selection-start="921" selection-end="921" vertical-scroll-proportion="0.8342246">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -198,10 +203,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResultActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ResultActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="45" selection-start="2525" selection-end="2525" vertical-scroll-proportion="0.4178273">
+            <state line="63" column="45" selection-start="2525" selection-end="2525" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="docComment;method#onCreateOptionsMenu#0;class#ResultActivity#0" expanded="false" />
                 <element signature="e#3999#4460#0" expanded="true" />
@@ -228,7 +233,7 @@
       <file leaf-file-name="ResultEpisodesAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="22" selection-start="2954" selection-end="2954" vertical-scroll-proportion="0.0">
+            <state line="43" column="30" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -258,17 +263,17 @@
         <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/GetActivity.java" />
         <option value="$PROJECT_DIR$/src/AmovieParser.java" />
         <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/GetEpisodesTask.java" />
-        <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/res/layout/resultListItem.xml" />
         <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParserApplication.java" />
         <option value="$PROJECT_DIR$/res/layout/result_activity.xml" />
         <option value="$PROJECT_DIR$/res/layout/action_bar_menu.xml" />
         <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/OpenVideoDialog.java" />
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java" />
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java" />
         <option value="$PROJECT_DIR$/res/menu/action_bar_menu.xml" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/main.xml" />
+        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java" />
+        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java" />
       </list>
     </option>
   </component>
@@ -721,14 +726,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5776" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946378" sideWeight="0.67022413" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24780877" sideWeight="0.6704" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24780877" sideWeight="0.6736" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -813,16 +818,6 @@
         <state line="2" column="0" selection-start="79" selection-end="79" vertical-scroll-proportion="0.049833886" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="36" selection-start="647" selection-end="647" vertical-scroll-proportion="-7.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/IdeaProjects/paintomimes/res/layout/palette_item.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="39" selection-start="199" selection-end="199" vertical-scroll-proportion="0.10380623">
@@ -833,13 +828,6 @@
     <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/GetActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="5" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParserApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="38" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -885,24 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="22" selection-start="2954" selection-end="2954" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="57" selection-start="4319" selection-end="4319" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#954#962#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="78" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.0">
@@ -917,9 +887,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="470" selection-end="470" vertical-scroll-proportion="-6.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParserApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="38" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="30" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="45" selection-start="2525" selection-end="2525" vertical-scroll-proportion="0.4178273">
+        <state line="63" column="45" selection-start="2525" selection-end="2525" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="docComment;method#onCreateOptionsMenu#0;class#ResultActivity#0" expanded="false" />
             <element signature="e#3999#4460#0" expanded="true" />
@@ -927,6 +923,13 @@
             <element signature="e#6174#6385#0" expanded="true" />
             <element signature="e#6370#6371#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="0" selection-start="921" selection-end="921" vertical-scroll-proportion="0.8342246">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,6 @@
 package com.abonec.AmoviesParser;
 import android.graphics.Bitmap;
+import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
@@ -33,32 +34,38 @@ public class AmovieParser {
     public interface ProgressUpdate {
         void progressUpdate(int current, int max);
     }
-    List<String> getVkLinks(){
-        List<String> vkLinks = new ArrayList<String>();
+    List<SerialEpisode> initializeEpisdes(){
+        List<SerialEpisode> episodes = null;
         try {
             Object[] nodes = getByXpath(amoviesUrl, "//select[@id=\"series\"]/option");
+            episodes = new ArrayList<SerialEpisode>(nodes.length);
             for(Object node : nodes) {
-                vkLinks.add(((TagNode)node).getAttributeByName("value"));
+                SerialEpisode episode = new SerialEpisode();
+                TagNode tag = (TagNode) node;
+                episode.vkLink = tag.getAttributeByName("value");
+                episode.title = tag.getText().toString();
+                episodes.add(episode);
             }
-
-            String str = "";
-        } catch (XPatherException e) {
         } catch (IOException e) {
+        } catch (XPatherException e) {
         }
-        return vkLinks;
+        return episodes;
     }
 
     Serial parseSerial() {
         Serial serial = new Serial(amoviesUrl);
-        List<String> links = getVkLinks();
-        episodesLength = links.size();
-        for(String link : links) {
-            TagNode cleaner = getCleaner(link);
+        List<SerialEpisode> episodes = initializeEpisdes();
+        episodesLength = episodes.size();
+        for(SerialEpisode episode : episodes) {
+            TagNode cleaner = getCleaner(episode.vkLink);
             if (cleaner == null) {
                 continue;
             }
+            episode.poster = getPoster(cleaner);
+            if(episode.poster == null){
+                episode.deprecated = true;
+            }
             Object[] nodes = getResolutionsNodes(cleaner);
-            SerialEpisode episode = new SerialEpisode(link, getPoster(cleaner));
             for(Object node : nodes){
                 TagNode tagNode = (TagNode) node;
                 episode.pushLink(tagNode.getAttributeByName("src"));
@@ -80,7 +87,7 @@ public class AmovieParser {
 
     private Object[] getByXpath(URL url, String xpath) throws IOException, XPatherException {
 
-        return cleaner.clean(url).evaluateXPath(xpath);
+        return cleaner.clean(url, "cp1251").evaluateXPath(xpath);
 
     }
 
@@ -94,7 +101,12 @@ public class AmovieParser {
     private String getPoster(TagNode cleaner){
         TagNode videoTag = null;
         try {
-            videoTag = (TagNode) cleaner.evaluateXPath("//video")[0];
+            Object[] tags = cleaner.evaluateXPath("//video");
+            if(tags.length > 0){
+                videoTag = (TagNode) tags[0];
+            } else {
+                return null;
+            }
         } catch (XPatherException e) {
             return null;
         }
@@ -123,14 +135,16 @@ public class AmovieParser {
     public class SerialEpisode {
         public String vkLink;
         public String poster;
+        public String title;
         public Bitmap posterBitmap;
         public int id;
         private Map<String, String> urls;
         private Pattern urlPattern = Pattern.compile(".*(720|480|360|240)\\..*$");
-        public SerialEpisode(String url, String episodePoster) {
-            this.vkLink = url;
-            this.poster = episodePoster;
+        public boolean deprecated;
+
+        public SerialEpisode(){
             this.urls = new HashMap<String, String>();
+
         }
         public String[] qualities(){
             String[] keys = urls.keySet().toArray(new String[0]);
