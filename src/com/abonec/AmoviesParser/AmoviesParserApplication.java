@@ -10,7 +10,8 @@ import android.app.Application;
  * To change this template use File | Settings | File Templates.
  */
 public class AmoviesParserApplication extends Application {
-    public AmovieParser.Serial serial;
+    public AmoviesEntry amoviesEntry;
+
     /**
      * Called when the application is starting, before any other application
      * objects have been created.  Implementations should be as quick as
@@ -22,5 +23,13 @@ public class AmoviesParserApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    public Serial getSerial() {
+        return (Serial)amoviesEntry;
+    }
+
+    public void setSerial(Serial serial) {
+        this.amoviesEntry = serial;
     }
 }

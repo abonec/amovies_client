@@ -34,29 +34,27 @@ public class AmovieParser {
     public interface ProgressUpdate {
         void progressUpdate(int current, int max);
     }
-    List<SerialEpisode> initializeEpisdes(){
-        List<SerialEpisode> episodes = null;
+    void initializeEpisdes(Serial serial){
         try {
             Object[] nodes = getByXpath(amoviesUrl, "//select[@id=\"series\"]/option");
-            episodes = new ArrayList<SerialEpisode>(nodes.length);
             for(Object node : nodes) {
-                SerialEpisode episode = new SerialEpisode();
+                Serial.SerialEpisode episode = serial.initializeEpisode();
                 TagNode tag = (TagNode) node;
                 episode.vkLink = tag.getAttributeByName("value");
                 episode.title = tag.getText().toString();
-                episodes.add(episode);
             }
         } catch (IOException e) {
+//            TODO: Здесь вылетает эксепшен при недоступности хоста, надо обработать
+            e.printStackTrace();
         } catch (XPatherException e) {
         }
-        return episodes;
     }
 
     Serial parseSerial() {
         Serial serial = new Serial(amoviesUrl);
-        List<SerialEpisode> episodes = initializeEpisdes();
-        episodesLength = episodes.size();
-        for(SerialEpisode episode : episodes) {
+        initializeEpisdes(serial);
+        episodesLength = serial.episodes.size();
+        for(Serial.SerialEpisode episode : serial.episodes) {
             TagNode cleaner = getCleaner(episode.vkLink);
             if (cleaner == null) {
                 continue;
@@ -70,8 +68,8 @@ public class AmovieParser {
                 TagNode tagNode = (TagNode) node;
                 episode.pushLink(tagNode.getAttributeByName("src"));
             }
-            serial.pushEpisode(episode);
-            progressCallback.progressUpdate(serial.episodes.size(), episodesLength);
+            int currentEpisode = serial.episodes.indexOf(episode);
+            progressCallback.progressUpdate(currentEpisode, episodesLength);
 
         }
         return serial;
@@ -111,58 +109,6 @@ public class AmovieParser {
             return null;
         }
         return videoTag.getAttributeByName("poster");
-    }
-    public class Serial {
-        public URL amoviesUrl;
-        public List<SerialEpisode> episodes;
-        private int lastId = 1;
-        private Map<Integer, SerialEpisode> episodesMap;
-
-        public Serial(URL url){
-            amoviesUrl = url;
-            episodes = new ArrayList<SerialEpisode>();
-            this.episodesMap = new HashMap<Integer, SerialEpisode>();
-        }
-        public void pushEpisode(SerialEpisode episode){
-            episode.id = ++lastId;
-            episodesMap.put(episode.id, episode);
-            episodes.add(episode);
-        }
-        public SerialEpisode getEpisodeById(int id){
-            return episodesMap.get(id);
-        }
-    }
-    public class SerialEpisode {
-        public String vkLink;
-        public String poster;
-        public String title;
-        public Bitmap posterBitmap;
-        public int id;
-        private Map<String, String> urls;
-        private Pattern urlPattern = Pattern.compile(".*(720|480|360|240)\\..*$");
-        public boolean deprecated;
-
-        public SerialEpisode(){
-            this.urls = new HashMap<String, String>();
-
-        }
-        public String[] qualities(){
-            String[] keys = urls.keySet().toArray(new String[0]);
-            Arrays.sort(keys, Collections.reverseOrder());
-            return keys;
-        }
-
-        public String getLinkByQuality(String quality){
-            return urls.get(quality);
-        }
-
-        public void pushLink(String link) {
-            Matcher matcher = urlPattern.matcher(link);
-            if(matcher.matches()){
-                String quality = matcher.group(1) + "p";
-                urls.put(quality, link);
-            }
-        }
     }
 
 }

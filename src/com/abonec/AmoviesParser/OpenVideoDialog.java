@@ -20,7 +20,7 @@ import android.widget.Spinner;
  */
 public class OpenVideoDialog extends Activity {
     private String[] qualities;
-    private AmovieParser.SerialEpisode episode;
+    private Serial.SerialEpisode episode;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.open_video_dialog);
@@ -69,8 +69,8 @@ public class OpenVideoDialog extends Activity {
     private int getEpisodeNumber(){
         return getIntent().getIntExtra("episode", 1);
     }
-    private AmovieParser.SerialEpisode getEpisode(){
+    private Serial.SerialEpisode getEpisode(){
         AmoviesParserApplication application = (AmoviesParserApplication)getApplication();
-        return application.serial.getEpisodeById(getEpisodeNumber());
+        return application.getSerial().getEpisodeById(getEpisodeNumber());
     }
 }

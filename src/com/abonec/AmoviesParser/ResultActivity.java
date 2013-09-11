@@ -103,7 +103,7 @@ public class ResultActivity extends Activity {
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AmovieParser.SerialEpisode episode = application().serial.episodes.get(position);
+                Serial.SerialEpisode episode = application().getSerial().episodes.get(position);
                 Intent intent = new Intent(ResultActivity.this, OpenVideoDialog.class);
                 intent.putExtra("episode", episode.id);
                 startActivity(intent);
@@ -120,20 +120,20 @@ public class ResultActivity extends Activity {
         resultProgressBar.setVisibility(View.VISIBLE);
         resultProgressBar.setProgress(0);
         if(force || url != null){
-            application.serial.episodes.clear();
+            application.getSerial().episodes.clear();
             adapter.notifyDataSetChanged();
-            application.serial = null;
+            application.setSerial(null);
         }
         if(url == null){
             url = getIntentString();
         }
-        if((application.serial == null || !application.serial.amoviesUrl.toString().equals(url))){
+        if((application.getSerial() == null || !application.getSerial().amoviesUrl.toString().equals(url))){
             try {
                 new GetEpisodesTask().execute(new URL(url));
             } catch (MalformedURLException e) {
             }
         }else{
-            populateResult(application.serial);
+            populateResult(application.getSerial());
             resultProgressBar.setVisibility(View.INVISIBLE);
         }
     }
@@ -146,15 +146,21 @@ public class ResultActivity extends Activity {
         return null;
     }
 
-    private void populateResult(AmovieParser.Serial serial){
+    private void populateResult(AmoviesEntry amoviesEntry){
+        if (amoviesEntry.entryType == AmoviesEntry.EntryType.Serial){
+            populateResultSerial((Serial)amoviesEntry);
+        }
+    }
+
+    private void populateResultSerial(Serial serial) {
         ResultEpisodesAdapter adapter = new ResultEpisodesAdapter(context, R.id.episode, serial.episodes);
         this.adapter = adapter;
         resultListView.setAdapter(adapter);
     }
 
-    private class GetEpisodesTask extends AsyncTask<URL, Integer, AmovieParser.Serial> {
+    private class GetEpisodesTask extends AsyncTask<URL, Integer, AmoviesEntry> {
         @Override
-        protected AmovieParser.Serial doInBackground(URL... params) {
+        protected AmoviesEntry doInBackground(URL... params) {
             AmovieParser parser = new AmovieParser(params[0]);
             parser.progressCallback = new AmovieParser.ProgressUpdate() {
                 @Override
@@ -163,13 +169,14 @@ public class ResultActivity extends Activity {
                 }
             };
             return parser.parseSerial();
+//            return new MockSerial().getMock(ResultActivity.this.getAssets());
         }
 
         @Override
-        protected void onPostExecute(AmovieParser.Serial serial) {
-            application().serial = serial;
+        protected void onPostExecute(AmoviesEntry amoviesEntry) {
             resultProgressBar.setVisibility(View.INVISIBLE);
-            populateResult(serial);
+            application().amoviesEntry = amoviesEntry;
+            populateResult(amoviesEntry);
         }
 
         /**
@@ -184,6 +191,8 @@ public class ResultActivity extends Activity {
         protected void onProgressUpdate(Integer... values) {
             int current = values[0];
             int max = values[1];
+            AmoviesHelpers.showToastLong(ResultActivity.this, "2");
+            AmoviesHelpers.showToastShort(ResultActivity.this, Integer.toString(max));
             resultProgressBar.setProgress((int)(current*1.0/max * 100));
         }
     }

@@ -7,9 +7,7 @@ import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,36 +21,83 @@ import java.util.List;
  * Time: 7:27 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpisode> {
+public class ResultEpisodesAdapter extends ArrayAdapter<Serial.SerialEpisode> {
+    static class ViewHolder{
+        ImageView poster;
+        TextView title;
+        Spinner qualities;
+        Button open_button;
+    }
     private final Context context;
-    private final List<AmovieParser.SerialEpisode> list;
+    private final List<Serial.SerialEpisode> list;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        AmovieParser.SerialEpisode episode = list.get(position);
-
-        View row = inflater.inflate(R.layout.result_list_item, parent, false);
-
-        TextView text = (TextView)row.findViewById(R.id.episode);
-        ImageView poster = (ImageView)row.findViewById(R.id.poster);
+        ViewHolder holder;
+        View row = convertView;
+        Serial.SerialEpisode episode = list.get(position);
+        if(row == null){
+            holder = new ViewHolder();
+            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            row = inflater.inflate(R.layout.result_list_item, parent, false);
+            holder.title = (TextView)row.findViewById(R.id.episode);
+            holder.poster = (ImageView)row.findViewById(R.id.poster);
+            holder.qualities = (Spinner)row.findViewById(R.id.chose_resolution_spinner);
+            holder.open_button = (Button)row.findViewById(R.id.open_video_button);
+            row.setTag(holder);
+        }else{
+            holder = (ViewHolder) convertView.getTag();
+        }
         String title = episode.title;
         if(episode.deprecated){
-            title += " изъята.";
+            title += " " + context.getString(R.string.has_been_deprecated);
         }
-        text.setText(title);
+        holder.title.setText(title);
         if(episode.posterBitmap != null){
-            poster.setImageBitmap(episode.posterBitmap);
+            holder.poster.setImageBitmap(episode.posterBitmap);
         }else{
-            new ImageDownloadClass(poster, episode).execute();
+            new ImageDownloadClass(holder.poster, episode).execute();
         }
-
-
-
+        fillQualities(holder.qualities, episode);
+        setListners(holder, episode, row);
         return row;
+    }
+
+    private void setListners(ViewHolder holder, Serial.SerialEpisode episode, View view) {
+        final View row = view;
+        final Serial.SerialEpisode serialEpisode = episode;
+        final ViewHolder viewHolder = holder;
+        holder.qualities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private boolean onInitialize = true;
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(onInitialize){
+                    onInitialize = false;
+                }else{
+                    String url = serialEpisode.getLinkByQualityPosition(position);
+                    AmoviesHelpers.openVideoWithUrl(context, url);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        holder.open_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = serialEpisode.getLinkByQualityPosition(viewHolder.qualities.getSelectedItemPosition());
+                AmoviesHelpers.openVideoWithUrl(context, url);
+            }
+        });
+    }
+
+    private void fillQualities(Spinner qualities, Serial.SerialEpisode episode) {
+        if(qualities == null) return;
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(qualities.getContext(), android.R.layout.simple_list_item_1, episode.qualities());
+        qualities.setAdapter(adapter);
     }
 
     /**
@@ -63,7 +108,7 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
      *                           instantiating views.
      * @param objects            The objects to represent in the ListView.
      */
-    public ResultEpisodesAdapter(Context context, int textViewResourceId, List<AmovieParser.SerialEpisode> objects) {
+    public ResultEpisodesAdapter(Context context, int textViewResourceId, List<Serial.SerialEpisode> objects) {
         super(context, textViewResourceId, objects);    //To change body of overridden methods use File | Settings | File Templates.
         this.context = context;
         this.list = objects;
@@ -71,8 +116,8 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
 
     private class ImageDownloadClass extends AsyncTask<Void, Void, Bitmap> {
         private final ImageView poster;
-        private final AmovieParser.SerialEpisode episode;
-        public ImageDownloadClass(ImageView poster, AmovieParser.SerialEpisode episode) {
+        private final Serial.SerialEpisode episode;
+        public ImageDownloadClass(ImageView poster, Serial.SerialEpisode episode) {
             this.poster = poster;
             this.episode = episode;
         }
@@ -101,7 +146,7 @@ public class ResultEpisodesAdapter extends ArrayAdapter<AmovieParser.SerialEpiso
                 InputStream in = (new URL(episode.poster).openStream());
                 result = BitmapFactory.decodeStream(in);
             } catch (IOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                AmoviesHelpers.showToastLong(context,e.getMessage());
             }
 
             return result;
