@@ -1,9 +1,7 @@
 package com.abonec.AmoviesParser;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -35,7 +33,7 @@ public class ResultActivity extends Activity {
         setContentView(R.layout.result_activity);
         this.resultProgressBar = (ProgressBar)findViewById(R.id.resultProgressBar);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setListners();
+        setListeners();
         setHandlers();
         loadOrParseSeries(false, null);
     }
@@ -111,7 +109,7 @@ public class ResultActivity extends Activity {
         };
     }
 
-    private void setListners() {
+    private void setListeners() {
         resultListView = (ListView)findViewById(R.id.resultListView);
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -134,19 +132,20 @@ public class ResultActivity extends Activity {
         resultProgressBar.setProgress(0);
         if(force || url != null){
             application.getSerial().episodes.clear();
-            adapter.notifyDataSetChanged();
+            updateAdapter();
             application.setSerial(null);
         }
         if(url == null){
             url = getIntentString();
         }
-        if((application.getSerial() == null || !application.getSerial().amoviesUrl.toString().equals(url))){
+        if((application.amoviesEntry == null || !application.amoviesEntry.amoviesUrl.toString().equals(url))){
             try {
                 new GetEpisodesTask(this).execute(new URL(url));
             } catch (MalformedURLException e) {
+                AmoviesHelpers.showToastLong(this, "Wrong url");
             }
         }else{
-            populateResult(application.getSerial());
+            populateResult(application.amoviesEntry);
             resultProgressBar.setVisibility(View.INVISIBLE);
         }
     }

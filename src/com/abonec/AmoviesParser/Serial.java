@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
  * To change this template use File | Settings | File Templates.
  */
 public class Serial extends AmoviesEntry {
-    public URL amoviesUrl;
     public List<SerialEpisode> episodes;
     private int lastId = 1;
     private Map<Integer, SerialEpisode> episodesMap;

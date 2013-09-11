@@ -1,5 +1,7 @@
 package com.abonec.AmoviesParser;
 
+import java.net.URL;
+
 /**
  * Created with IntelliJ IDEA.
  * User: abonec
@@ -10,6 +12,7 @@ package com.abonec.AmoviesParser;
 public class AmoviesEntry {
     enum EntryType { Serial, Film };
     public final EntryType entryType;
+    public URL amoviesUrl;
     public AmoviesEntry(EntryType type) {
         this.entryType = type;
     }
