@@ -1,17 +1,13 @@
 package com.abonec.AmoviesParser;
-import android.graphics.Bitmap;
-import org.htmlcleaner.CleanerProperties;
+
+import android.app.Activity;
+import android.content.Context;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,9 +22,15 @@ public class AmovieParser {
     URL amoviesUrl;
     ProgressUpdate progressCallback;
     int episodesLength;
+    private Context context;
     public AmovieParser(URL htmlPage){
         cleaner = new HtmlCleaner();
         amoviesUrl = htmlPage;
+    }
+
+    public AmovieParser(URL htmlPage, Context context) {
+        this(htmlPage);
+        this.context = context;
     }
 
     public interface ProgressUpdate {
@@ -53,6 +55,7 @@ public class AmovieParser {
     Serial parseSerial() {
         Serial serial = new Serial(amoviesUrl);
         initializeEpisdes(serial);
+        setSerialToApplication(serial);
         episodesLength = serial.episodes.size();
         for(Serial.SerialEpisode episode : serial.episodes) {
             TagNode cleaner = getCleaner(episode.vkLink);
@@ -73,6 +76,12 @@ public class AmovieParser {
 
         }
         return serial;
+    }
+
+    private void setSerialToApplication(Serial serial) {
+        if(context == null) return;
+        AmoviesParserApplication application = (AmoviesParserApplication) ((Activity)context).getApplication();
+        application.setSerial(serial);
     }
 
     private Object[] getResolutionsNodes(TagNode cleaner) {

@@ -146,7 +146,6 @@ public class ResultEpisodesAdapter extends ArrayAdapter<Serial.SerialEpisode> {
                 InputStream in = (new URL(episode.poster).openStream());
                 result = BitmapFactory.decodeStream(in);
             } catch (IOException e) {
-                AmoviesHelpers.showToastLong(context,e.getMessage());
             }
 
             return result;

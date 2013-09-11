@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,11 +24,21 @@ import java.net.URL;
  * To change this template use File | Settings | File Templates.
  */
 public class ResultActivity extends Activity {
-    private Context context;
     private ListView resultListView;
     private ResultEpisodesAdapter adapter;
-    private ProgressBar resultProgressBar;
+    public ProgressBar resultProgressBar;
+    public Handler populateHandler;
 
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.result_activity);
+        this.resultProgressBar = (ProgressBar)findViewById(R.id.resultProgressBar);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        setListners();
+        setHandlers();
+        loadOrParseSeries(false, null);
+    }
     /**
      * Initialize the contents of the Activity's standard options menu.  You
      * should place your menu items in to <var>menu</var>.
@@ -85,17 +97,18 @@ public class ResultActivity extends Activity {
         }
     }
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.result_activity);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        this.context = this;
-        String url = getIntentString();
-        TextView textView = (TextView)findViewById(R.id.text_view);
-        textView.setText(url);
-        this.resultProgressBar = (ProgressBar)findViewById(R.id.resultProgressBar);
-        setListners();
-        loadOrParseSeries(false, null);
+    private void setHandlers() {
+        populateHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if(adapter == null){
+                    Serial serial = (Serial) msg.obj;
+                    setAdapter(serial);
+                }else{
+                    updateAdapter();
+                }
+            }
+        };
     }
 
     private void setListners() {
@@ -112,7 +125,7 @@ public class ResultActivity extends Activity {
 
     }
 
-    private AmoviesParserApplication application(){
+    AmoviesParserApplication application(){
         return (AmoviesParserApplication) getApplication();
     }
     private void loadOrParseSeries(boolean force, String url) {
@@ -129,7 +142,7 @@ public class ResultActivity extends Activity {
         }
         if((application.getSerial() == null || !application.getSerial().amoviesUrl.toString().equals(url))){
             try {
-                new GetEpisodesTask().execute(new URL(url));
+                new GetEpisodesTask(this).execute(new URL(url));
             } catch (MalformedURLException e) {
             }
         }else{
@@ -146,54 +159,22 @@ public class ResultActivity extends Activity {
         return null;
     }
 
-    private void populateResult(AmoviesEntry amoviesEntry){
+    void populateResult(AmoviesEntry amoviesEntry){
         if (amoviesEntry.entryType == AmoviesEntry.EntryType.Serial){
             populateResultSerial((Serial)amoviesEntry);
         }
     }
 
     private void populateResultSerial(Serial serial) {
-        ResultEpisodesAdapter adapter = new ResultEpisodesAdapter(context, R.id.episode, serial.episodes);
+        setAdapter(serial);
+    }
+    private void setAdapter(Serial serial){
+        ResultEpisodesAdapter adapter = new ResultEpisodesAdapter(this, R.id.episode, serial.episodes);
         this.adapter = adapter;
         resultListView.setAdapter(adapter);
     }
-
-    private class GetEpisodesTask extends AsyncTask<URL, Integer, AmoviesEntry> {
-        @Override
-        protected AmoviesEntry doInBackground(URL... params) {
-            AmovieParser parser = new AmovieParser(params[0]);
-            parser.progressCallback = new AmovieParser.ProgressUpdate() {
-                @Override
-                public void progressUpdate(int current, int max) {
-                    publishProgress(current, max);
-                }
-            };
-            return parser.parseSerial();
-//            return new MockSerial().getMock(ResultActivity.this.getAssets());
-        }
-
-        @Override
-        protected void onPostExecute(AmoviesEntry amoviesEntry) {
-            resultProgressBar.setVisibility(View.INVISIBLE);
-            application().amoviesEntry = amoviesEntry;
-            populateResult(amoviesEntry);
-        }
-
-        /**
-         * Runs on the UI thread after {@link #publishProgress} is invoked.
-         * The specified values are the values passed to {@link #publishProgress}.
-         *
-         * @param values The values indicating progress.
-         * @see #publishProgress
-         * @see #doInBackground
-         */
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            int current = values[0];
-            int max = values[1];
-            AmoviesHelpers.showToastLong(ResultActivity.this, "2");
-            AmoviesHelpers.showToastShort(ResultActivity.this, Integer.toString(max));
-            resultProgressBar.setProgress((int)(current*1.0/max * 100));
-        }
+    private void updateAdapter(){
+        adapter.notifyDataSetChanged();
     }
+
 }
