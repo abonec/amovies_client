@@ -16,26 +16,27 @@ import java.net.URL;
  * Time: 7:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class AmovieParser {
+public class AmoviesParser {
+    public ProgressUpdate serialProgressCallback;
+
+    public interface ProgressUpdate {
+        void progressUpdate(int current, int max, AmoviesEntry entry);
+    }
 
     HtmlCleaner cleaner;
     URL amoviesUrl;
-    ProgressUpdate progressCallback;
     int episodesLength;
     private Context context;
-    public AmovieParser(URL htmlPage){
+    public AmoviesParser(URL htmlPage){
         cleaner = new HtmlCleaner();
         amoviesUrl = htmlPage;
     }
 
-    public AmovieParser(URL htmlPage, Context context) {
+    public AmoviesParser(URL htmlPage, Context context) {
         this(htmlPage);
         this.context = context;
     }
 
-    public interface ProgressUpdate {
-        void progressUpdate(int current, int max);
-    }
     void initializeEpisdes(Serial serial){
         try {
             Object[] nodes = getByXpath(amoviesUrl, "//select[@id=\"series\"]/option");
@@ -72,7 +73,7 @@ public class AmovieParser {
                 episode.pushLink(tagNode.getAttributeByName("src"));
             }
             int currentEpisode = serial.episodes.indexOf(episode);
-            progressCallback.progressUpdate(currentEpisode, episodesLength);
+            serialProgressCallback.progressUpdate(currentEpisode, episodesLength, serial);
 
         }
         return serial;

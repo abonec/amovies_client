@@ -1,7 +1,6 @@
 package com.abonec.AmoviesParser;
 
 import android.os.AsyncTask;
-import android.os.Message;
 import android.view.View;
 
 import java.net.URL;
@@ -15,6 +14,7 @@ import java.net.URL;
  */
 public class GetEpisodesTask extends AsyncTask<URL, Integer, AmoviesEntry> {
     private final ResultActivity activity;
+    private AmoviesFragment fragment;
 
     /**
      * Creates a new asynchronous task. This constructor must be invoked on the UI thread.
@@ -26,14 +26,13 @@ public class GetEpisodesTask extends AsyncTask<URL, Integer, AmoviesEntry> {
 
     @Override
     protected AmoviesEntry doInBackground(URL... params) {
-        AmovieParser parser = new AmovieParser(params[0], activity);
-        parser.progressCallback = new AmovieParser.ProgressUpdate() {
+        AmoviesParser parser = new AmoviesParser(params[0], activity);
+        parser.serialProgressCallback = new AmoviesParser.ProgressUpdate() {
             @Override
-            public void progressUpdate(int current, int max) {
+            public void progressUpdate(int current, int max, AmoviesEntry entry) {
+                activity.asyncLoadAppropriateView(entry);
+                activity.updateView();
                 publishProgress(current, max);
-                Message message = new Message();
-                message.obj = activity.application().getSerial();
-                activity.populateHandler.sendMessage(message);
             }
         };
         return parser.parseSerial();
@@ -42,9 +41,8 @@ public class GetEpisodesTask extends AsyncTask<URL, Integer, AmoviesEntry> {
 
     @Override
     protected void onPostExecute(AmoviesEntry amoviesEntry) {
+        activity.loadAppropriateView(amoviesEntry);
         activity.resultProgressBar.setVisibility(View.INVISIBLE);
-        activity.application().amoviesEntry = amoviesEntry;
-        activity.populateResult(amoviesEntry);
     }
 
     /**
