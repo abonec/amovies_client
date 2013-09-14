@@ -21,6 +21,19 @@ public class SerialViewFragment extends ListFragment implements AmoviesFragment{
     public Serial serial;
     private ResultEpisodesAdapter adapter;
     private Handler populateHandler;
+    public static SerialViewFragment getInstance(Serial serial){
+        return new SerialViewFragment().setSerial(serial);
+    }
+
+    @Override
+    public void setAmoviesEntry(AmoviesEntry entry) {
+        setSerial((Serial)entry);
+    }
+
+    @Override
+    public AmoviesEntry getEntry() {
+        return serial;
+    }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
@@ -50,10 +63,20 @@ public class SerialViewFragment extends ListFragment implements AmoviesFragment{
         this.serial = serial;
         return this;
     }
+
+    @Override
+    public boolean compatibleWith(AmoviesEntry entry) {
+        return entry.entryType == AmoviesEntry.EntryType.Serial;
+    }
+
     public void setAdapter(Serial serial){
         ResultEpisodesAdapter adapter = new ResultEpisodesAdapter(getActivity(), R.id.episode, serial.episodes);
         this.adapter = adapter;
         setListAdapter(adapter);
+    }
+    public void resetView(){
+        serial.clearEpisodes();
+        updateView();
     }
     public void updateView(){
         if(adapter == null) return;

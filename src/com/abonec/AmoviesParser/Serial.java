@@ -40,6 +40,10 @@ public class Serial extends AmoviesEntry {
         return episode;
     }
 
+    public void clearEpisodes() {
+        episodes.clear();
+    }
+
     public class SerialEpisode {
         public String vkLink;
         public String poster;

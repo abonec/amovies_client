@@ -8,5 +8,9 @@ package com.abonec.AmoviesParser;
  * To change this template use File | Settings | File Templates.
  */
 public interface AmoviesFragment {
+    public AmoviesEntry getEntry();
     public void updateView();
+    public void setAmoviesEntry(AmoviesEntry entry);
+    public void resetView();
+    public boolean compatibleWith(AmoviesEntry entry);
 }

@@ -3,6 +3,7 @@ package com.abonec.AmoviesParser;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -71,25 +72,10 @@ public class ResultActivity extends Activity {
         }
     }
 
-    private void setHandlers() {
-        populateHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if(adapter == null){
-                    Serial serial = (Serial) msg.obj;
-                    setAdapter(serial);
-                }else{
-                    updateAdapter();
-                }
-            }
-        };
-    }
-
     AmoviesParserApplication application(){
         return (AmoviesParserApplication) getApplication();
     }
     public AmoviesFragment loadAppropriateView(AmoviesEntry entry){
-        if(fragment != null) return null;
         if(entry.entryType == AmoviesEntry.EntryType.Serial){
             return loadSerialFragment((Serial)entry);
         }
@@ -107,13 +93,27 @@ public class ResultActivity extends Activity {
     }
 
     private AmoviesFragment loadSerialFragment(Serial serial) {
-        SerialViewFragment fragment = new SerialViewFragment().setSerial(serial);
-        this.fragment = fragment;
-        FragmentManager fragmentManger = getFragmentManager();
-        fragmentManger.beginTransaction()
-                .add(R.id.frame_layout, fragment)
-                .commit();
-        return fragment;
+        SerialViewFragment result;
+        if(fragment != null && ((AmoviesFragment)fragment).compatibleWith(serial)){
+            result = (SerialViewFragment)fragment;
+            result.setAdapter(serial);
+            result.updateView();
+        }else{
+            result = SerialViewFragment.getInstance(serial);
+            FragmentManager fragmentManger = getFragmentManager();
+            FragmentTransaction transaction = fragmentManger.beginTransaction();
+            this.fragment = result;
+            if (fragment == null){
+                transaction.replace(R.id.result_fragment_container, result)
+                        .commit();
+
+            }else{
+                transaction.replace(R.id.result_fragment_container, result)
+                        .commit();
+
+            }
+        }
+        return result;
     }
 
     public void updateView(){
@@ -121,7 +121,7 @@ public class ResultActivity extends Activity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((AmoviesFragment)fragment).updateView();
+                ((AmoviesFragment) fragment).updateView();
             }
         });
     }
@@ -131,22 +131,19 @@ public class ResultActivity extends Activity {
         resultProgressBar.setVisibility(View.VISIBLE);
         resultProgressBar.setProgress(0);
         if(force || url != null){
-            application.getSerial().episodes.clear();
-            updateAdapter();
-            application.setSerial(null);
+//            TODO: reset or get by new url
+            ((AmoviesFragment)fragment).resetView();
+//            application.getSerial().episodes.clear();
+//            updateAdapter();
+//            application.setSerial(null);
         }
         if(url == null){
             url = getIntentString();
         }
-        if((application.amoviesEntry == null || !application.amoviesEntry.amoviesUrl.toString().equals(url))){
-            try {
-                new GetEpisodesTask(this).execute(new URL(url));
-            } catch (MalformedURLException e) {
-                AmoviesHelpers.showToastLong(this, "Wrong url");
-            }
-        }else{
-            populateResult(application.amoviesEntry);
-            resultProgressBar.setVisibility(View.INVISIBLE);
+        try {
+            new GetEpisodesTask(this).execute(new URL(url));
+        } catch (MalformedURLException e) {
+            AmoviesHelpers.showToastLong(this, "Wrong url");
         }
     }
 
@@ -156,24 +153,6 @@ public class ResultActivity extends Activity {
             return intent.getStringExtra(Intent.EXTRA_TEXT);
         }
         return null;
-    }
-
-    void populateResult(AmoviesEntry amoviesEntry){
-        if (amoviesEntry.entryType == AmoviesEntry.EntryType.Serial){
-            populateResultSerial((Serial)amoviesEntry);
-        }
-    }
-
-    private void populateResultSerial(Serial serial) {
-        setAdapter(serial);
-    }
-    private void setAdapter(Serial serial){
-        ResultEpisodesAdapter adapter = new ResultEpisodesAdapter(this, R.id.episode, serial.episodes);
-        this.adapter = adapter;
-        resultListView.setAdapter(adapter);
-    }
-    private void updateAdapter(){
-        adapter.notifyDataSetChanged();
     }
 
 }

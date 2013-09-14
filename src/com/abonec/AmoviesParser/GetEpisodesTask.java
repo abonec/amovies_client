@@ -14,6 +14,7 @@ import java.net.URL;
  */
 public class GetEpisodesTask extends AsyncTask<URL, Integer, AmoviesEntry> {
     private final ResultActivity activity;
+    private boolean setFragment = true;
     private AmoviesFragment fragment;
 
     /**
@@ -30,7 +31,10 @@ public class GetEpisodesTask extends AsyncTask<URL, Integer, AmoviesEntry> {
         parser.serialProgressCallback = new AmoviesParser.ProgressUpdate() {
             @Override
             public void progressUpdate(int current, int max, AmoviesEntry entry) {
-                activity.asyncLoadAppropriateView(entry);
+                if (setFragment){
+                    activity.asyncLoadAppropriateView(entry);
+                    setFragment = false;
+                }
                 activity.updateView();
                 publishProgress(current, max);
             }
