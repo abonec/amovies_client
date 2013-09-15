@@ -1,5 +1,7 @@
 package com.abonec.AmoviesParser;
 
+import org.htmlcleaner.TagNode;
+
 import java.net.URL;
 import java.util.Date;
 
@@ -12,9 +14,11 @@ import java.util.Date;
  */
 public class AmoviesEntry {
     Date time;
-    enum EntryType { Serial, Film };
+    enum EntryType { Serial, Movie };
     public final EntryType entryType;
     public URL amoviesUrl;
+    public String htmlContent;
+    public TagNode parser;
     public AmoviesEntry(EntryType type) {
         this.entryType = type;
     }

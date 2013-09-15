@@ -15,7 +15,6 @@ import java.net.URL;
 public class GetEpisodesTask extends AsyncTask<URL, Integer, AmoviesEntry> {
     private final ResultActivity activity;
     private boolean setFragment = true;
-    private AmoviesFragment fragment;
 
     /**
      * Creates a new asynchronous task. This constructor must be invoked on the UI thread.
@@ -39,7 +38,7 @@ public class GetEpisodesTask extends AsyncTask<URL, Integer, AmoviesEntry> {
                 publishProgress(current, max);
             }
         };
-        return parser.parseSerial();
+        return parser.parse();
 //            return new MockSerial().getMock(ResultActivity.this.getAssets());
     }
 

@@ -1,6 +1,7 @@
 package com.abonec.AmoviesParser;
 
 import android.graphics.Bitmap;
+import org.htmlcleaner.TagNode;
 
 import java.net.URL;
 import java.util.*;
@@ -24,6 +25,11 @@ public class Serial extends AmoviesEntry {
         amoviesUrl = url;
         episodes = new ArrayList<SerialEpisode>();
         this.episodesMap = new HashMap<Integer, SerialEpisode>();
+    }
+    public Serial(URL url, String htmlContent, TagNode parser){
+        this(url);
+        this.htmlContent = htmlContent;
+        this.parser = parser;
     }
     public void pushEpisode(SerialEpisode episode){
         episode.id = ++lastId;

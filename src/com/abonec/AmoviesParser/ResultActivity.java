@@ -94,7 +94,7 @@ public class ResultActivity extends Activity {
 
     private AmoviesFragment loadSerialFragment(Serial serial) {
         SerialViewFragment result;
-        if(fragment != null && ((AmoviesFragment)fragment).compatibleWith(serial)){
+        if(false && fragment != null && ((AmoviesFragment)fragment).compatibleWith(serial)){
             result = (SerialViewFragment)fragment;
             result.setAdapter(serial);
             result.updateView();

@@ -6,7 +6,9 @@ import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 
 /**
@@ -39,22 +41,73 @@ public class AmoviesParser {
 
     void initializeEpisdes(Serial serial){
         try {
-            Object[] nodes = getByXpath(amoviesUrl, "//select[@id=\"series\"]/option");
+            Object[] nodes = cleaner.clean(serial.htmlContent).evaluateXPath("//select[@id=\"series\"]/option");
             for(Object node : nodes) {
                 Serial.SerialEpisode episode = serial.initializeEpisode();
                 TagNode tag = (TagNode) node;
                 episode.vkLink = tag.getAttributeByName("value");
                 episode.title = tag.getText().toString();
             }
-        } catch (IOException e) {
-//            TODO: Здесь вылетает эксепшен при недоступности хоста, надо обработать
-            e.printStackTrace();
         } catch (XPatherException e) {
         }
     }
 
-    Serial parseSerial() {
-        Serial serial = new Serial(amoviesUrl);
+    AmoviesEntry parse() {
+        AmoviesEntry entry = getEntry(amoviesUrl);
+        parseEntry(entry);
+        return entry;
+    }
+
+    private void parseEntry(AmoviesEntry entry) {
+        if(entry.entryType == AmoviesEntry.EntryType.Serial){
+            parseSerial((Serial) entry);
+        }else{
+            parseMovie((Movie) entry);
+        }
+    }
+
+    private Movie parseMovie(Movie movie) {
+        TagNode tagNode;
+        if((tagNode = getFirstNode(movie.parser, "//div[@class=\"post_text\"]")) != null){
+            movie.description = tagNode.getText().toString();
+        }
+        if((tagNode = getFirstNode(movie.parser, "//article[@class=\"post_full\"]/h1[@class=\"title_d_dot\"]/span")) != null){
+            movie.title = tagNode.getText().toString();
+
+        }
+        if((tagNode = getFirstNode(movie.parser, "//article[@class=\"post_full\"]/div[@class=\"prev_img\"]/img")) != null){
+            movie.posterUrl = tagNode.getAttributeByName("src");
+
+        }
+        try {
+            Object[] nodes = movie.parser.evaluateXPath("//article[@class=\"post_full\"]/ul[@class=\"post_info ul_clear\"]/li");
+            if (nodes.length > 0){
+                for (Object objectNode : nodes){
+                    TagNode node = (TagNode) objectNode;
+                    String name = getFirstNode(node, "//strong").getText().toString();
+                    String value = getFirstNode(node, "//span").getText().toString();
+                    movie.pushProperty(name, value);
+                }
+            }
+        } catch (XPatherException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return movie;
+    }
+    private TagNode getFirstNode(TagNode parser, String path){
+        Object[] nodes;
+        try {
+            nodes = parser.evaluateXPath(path);
+        } catch (XPatherException e) {
+            return null;
+        }
+        if (nodes.length > 0){
+            return (TagNode)nodes[0];
+        }
+        return null;
+    }
+
+    private Serial parseSerial(Serial serial) {
         initializeEpisdes(serial);
         setSerialToApplication(serial);
         episodesLength = serial.episodes.size();
@@ -77,6 +130,36 @@ public class AmoviesParser {
 
         }
         return serial;
+    }
+
+    private AmoviesEntry getEntry(URL amoviesUrl) {
+        AmoviesEntry entry = null;
+        String content = getContent(amoviesUrl);
+        try {
+//            cleaner.clean(content).evaluateXPath("//li[@class=\"films_if\"]/iframe")[0].getAttributeByName("src")
+            TagNode parser = cleaner.clean(content);
+            Object[] film_nodes = parser.evaluateXPath("//li[@class=\"films_if\"]/iframe");
+            if(film_nodes.length > 0){
+                entry = new Movie(amoviesUrl, content, parser);
+            }else{
+                entry = new Serial(amoviesUrl, content, parser);
+            }
+        } catch (XPatherException e) {
+        }
+        return entry;
+    }
+    private String getContent(URL url) {
+        BufferedReader reader;
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            reader = new BufferedReader(new InputStreamReader(url.openStream(), "cp1251"));
+            String line;
+            while((line = reader.readLine()) != null){
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+        }
+        return stringBuilder.toString();
     }
 
     private void setSerialToApplication(Serial serial) {

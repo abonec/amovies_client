@@ -7,7 +7,7 @@
     <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="http://amovies.tv/serials/92-fors-mazhory-1season-pervuikanal.html"
+            android:text="http://amovies.tv/film/574-bill-geyts-istoriya-uspeha.html"
             android:id="@+id/editText" android:layout_gravity="center" android:singleLine="true"/>
     <Button
             android:layout_width="fill_parent"
