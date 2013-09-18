@@ -33,6 +33,7 @@ public class MovieFragment extends Fragment implements AmoviesFragment {
     private ImageView poster;
     private ListView properties;
     private Button openButton;
+    private Spinner qualityChooser;
 
     @Override
     public AmoviesEntry getEntry() {
@@ -47,6 +48,7 @@ public class MovieFragment extends Fragment implements AmoviesFragment {
         }else{
             poster.setImageBitmap(movie.posterBitmap);
         }
+        qualityChooser.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, movie.qualities()));
         setProperties();
     }
 
@@ -78,6 +80,7 @@ public class MovieFragment extends Fragment implements AmoviesFragment {
         this.poster = (ImageView) view.findViewById(R.id.movie_poster);
         this.properties = (ListView) view.findViewById(R.id.movies_properties);
         this.openButton = (Button) view.findViewById(R.id.open_movie_button);
+        this.qualityChooser = (Spinner) view.findViewById(R.id.quality_chooser);
         this.context = view.getContext();
         setListners();
         updateView();
@@ -89,7 +92,23 @@ public class MovieFragment extends Fragment implements AmoviesFragment {
         openButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               AmoviesHelpers.openVideoWithUrl(context, movie.getLinkByQuality("720p"));
+                AmoviesHelpers.openVideoWithUrl(context, movie.getLinkByQualityPosition(qualityChooser.getSelectedItemPosition()));
+            }
+        });
+        qualityChooser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private boolean firstTime = true;
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(firstTime){
+                    firstTime = false;
+                }else{
+                    AmoviesHelpers.openVideoWithUrl(context, movie.getLinkByQualityPosition(position));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //To change body of implemented methods use File | Settings | File Templates.
             }
         });
     }

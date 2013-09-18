@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
@@ -10,34 +9,54 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/movie_title"
-            android:layout_gravity="left|center_vertical"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            />
+
+    <ImageView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_poster"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_below="@id/movie_title"
+            />
+
+    <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movies_properties"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_below="@id/movie_title"
+            android:layout_toRightOf="@id/movie_poster"
             />
 
     <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center">
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_below="@id/movie_poster"
+            >
+
+        <Spinner
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:id="@+id/quality_chooser"
+                android:layout_toLeftOf="@+id/open_movie_button"
+                android:layout_below="@id/movie_poster"
+                />
 
         <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Button"
+                android:layout_weight="25"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="@string/open_video_button"
                 android:id="@+id/open_movie_button"
-                android:layout_gravity="center_horizontal|top"/>
-
-        <ImageView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/movie_poster"
-                android:layout_gravity="center_horizontal|top"/>
-
-        <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/movies_properties"
-                android:layout_gravity="center_horizontal|top"/>
+                android:layout_below="@+id/movie_poster"
+                android:layout_centerHorizontal="true"
+                />
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>
