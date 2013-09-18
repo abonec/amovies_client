@@ -73,12 +73,12 @@ public class AmoviesParser {
         }
         if((tagNode = getFirstNode(movie.parser, "//article[@class=\"post_full\"]/h1[@class=\"title_d_dot\"]/span")) != null){
             movie.title = tagNode.getText().toString();
-
         }
         if((tagNode = getFirstNode(movie.parser, "//article[@class=\"post_full\"]/div[@class=\"prev_img\"]/img")) != null){
             movie.posterUrl = tagNode.getAttributeByName("src");
-
         }
+
+        movie.vkLink = getFirstNode(movie.parser, "//li[@class=\"films_if\"]/iframe").getAttributeByName("src");
         try {
             Object[] nodes = movie.parser.evaluateXPath("//article[@class=\"post_full\"]/ul[@class=\"post_info ul_clear\"]/li");
             if (nodes.length > 0){
@@ -92,24 +92,32 @@ public class AmoviesParser {
         } catch (XPatherException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+        setMovieVideoLinks(movie);
         return movie;
     }
+
+    private void setMovieVideoLinks(Movie movie) {
+        Object[] nodes = getResolutionsNodes(getCleaner(movie.vkLink));
+        for(Object node : nodes){
+            TagNode videoNode = (TagNode) node;
+            movie.pushLink(videoNode.getAttributeByName("src"));
+        }
+    }
+
     private TagNode getFirstNode(TagNode parser, String path){
         Object[] nodes;
         try {
             nodes = parser.evaluateXPath(path);
+            if (nodes.length > 0){
+                return (TagNode)nodes[0];
+            }
         } catch (XPatherException e) {
-            return null;
-        }
-        if (nodes.length > 0){
-            return (TagNode)nodes[0];
         }
         return null;
     }
 
     private Serial parseSerial(Serial serial) {
         initializeEpisdes(serial);
-        setSerialToApplication(serial);
         episodesLength = serial.episodes.size();
         for(Serial.SerialEpisode episode : serial.episodes) {
             TagNode cleaner = getCleaner(episode.vkLink);
@@ -162,24 +170,12 @@ public class AmoviesParser {
         return stringBuilder.toString();
     }
 
-    private void setSerialToApplication(Serial serial) {
-        if(context == null) return;
-        AmoviesParserApplication application = (AmoviesParserApplication) ((Activity)context).getApplication();
-        application.setSerial(serial);
-    }
-
     private Object[] getResolutionsNodes(TagNode cleaner) {
         try {
             return cleaner.evaluateXPath("//video/source");
         } catch (XPatherException e) {
             return new Object[0];
         }
-    }
-
-    private Object[] getByXpath(URL url, String xpath) throws IOException, XPatherException {
-
-        return cleaner.clean(url, "cp1251").evaluateXPath(xpath);
-
     }
 
     private TagNode getCleaner(String link){

@@ -50,39 +50,16 @@ public class Serial extends AmoviesEntry {
         episodes.clear();
     }
 
-    public class SerialEpisode {
+    public class SerialEpisode extends Qualities {
         public String vkLink;
         public String poster;
         public String title;
         public Bitmap posterBitmap;
         public int id;
-        private Map<String, String> urls;
-        private Pattern urlPattern = Pattern.compile(".*(720|480|360|240)\\..*$");
         public boolean deprecated;
 
         public SerialEpisode(){
-            this.urls = new HashMap<String, String>();
-
-        }
-        public String[] qualities(){
-            String[] keys = urls.keySet().toArray(new String[0]);
-            Arrays.sort(keys, Collections.reverseOrder());
-            return keys;
-        }
-
-        public String getLinkByQuality(String quality){
-            return urls.get(quality);
-        }
-        public String getLinkByQualityPosition(int position){
-            return getLinkByQuality(qualities()[position]);
-        }
-
-        public void pushLink(String link) {
-            Matcher matcher = urlPattern.matcher(link);
-            if(matcher.matches()){
-                String quality = matcher.group(1) + "p";
-                urls.put(quality, link);
-            }
+            initializeUrls();
         }
     }
 }

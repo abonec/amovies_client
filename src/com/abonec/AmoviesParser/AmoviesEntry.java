@@ -12,7 +12,7 @@ import java.util.Date;
  * Time: 6:37 PM
  * To change this template use File | Settings | File Templates.
  */
-public class AmoviesEntry {
+public class AmoviesEntry extends Qualities{
     Date time;
     enum EntryType { Serial, Movie };
     public final EntryType entryType;

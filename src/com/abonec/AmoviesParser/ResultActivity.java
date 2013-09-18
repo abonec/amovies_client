@@ -78,8 +78,19 @@ public class ResultActivity extends Activity {
     public AmoviesFragment loadAppropriateView(AmoviesEntry entry){
         if(entry.entryType == AmoviesEntry.EntryType.Serial){
             return loadSerialFragment((Serial)entry);
+        }else if(entry.entryType == AmoviesEntry.EntryType.Movie){
+            return loadMovieFragment((Movie)entry);
         }
         return null;
+    }
+
+    private AmoviesFragment loadMovieFragment(Movie movie) {
+        MovieFragment result = MovieFragment.newInstance(movie);
+        FragmentManager manager = getFragmentManager();
+        manager.beginTransaction().
+                replace(R.id.result_fragment_container, result).
+                commit();
+        return result;
     }
 
     public void asyncLoadAppropriateView(AmoviesEntry entry){

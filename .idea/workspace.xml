@@ -28,26 +28,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6da1e882-0b06-4b96-b264-b94d1d0bd46c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Movie.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/MovieFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Qualities.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/movie_layout.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/movie_property_layout.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesEntry.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesEntry.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParser.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/GetEpisodesTask.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/GetEpisodesTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Movie.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Movie.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Serial.java" afterPath="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Serial.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/abonec.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/abonec.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AmoviesParser.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/AndroidManifest.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378044150408" ignored="false" />
-    <file path="/ResultActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379165491348" ignored="false" />
+    <file path="/ResultActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379230845457" ignored="false" />
     <file path="/a.dummy" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378194842284" ignored="false" />
-    <file path="/Dummy.txt" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379157488537" ignored="false" />
+    <file path="/Dummy.txt" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379317287224" ignored="false" />
     <file path="/GetActivity.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377692826527" ignored="false" />
     <file path="/AmovieParser.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378914674534" ignored="false" />
     <file path="/GetEpisodesTask.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379165783038" ignored="false" />
-    <file path="/fragment.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379229199501" ignored="false" />
+    <file path="/fragment.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379316643070" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/html5/xhtml5.xsd" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779323" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xhtml1-transitional.xsd" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779323" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/relaxng.rng" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1377774779323" ignored="false" />
@@ -73,17 +74,20 @@
     <file path="/action_bar_menu.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378043945151" ignored="false" />
     <file path="/OpenVideoDialog.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378651964235" ignored="false" />
     <file path="/MockSerial.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378381524509" ignored="false" />
-    <file path="/Serial.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379185983557" ignored="false" />
+    <file path="/Serial.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379252585201" ignored="false" />
     <file path="/result_list_item.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378653864934" ignored="false" />
     <file path="/open_video_dialog.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378469016289" ignored="false" />
     <file path="/Film.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378649992425" ignored="false" />
-    <file path="/AmoviesEntry.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379185913250" ignored="false" />
+    <file path="/AmoviesEntry.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379252762087" ignored="false" />
     <file path="/AmoviesHelpers.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1378654373978" ignored="false" />
     <file path="/SerialViewFragment.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379164974358" ignored="false" />
     <file path="/result_activity.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379160315772" ignored="false" />
     <file path="/AmoviesFragment.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379157565779" ignored="false" />
-    <file path="/AmoviesParser.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379227756165" ignored="false" />
-    <file path="/Movie.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379229268335" ignored="false" />
+    <file path="/AmoviesParser.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379252777874" ignored="false" />
+    <file path="/Movie.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379317700388" ignored="false" />
+    <file path="/MovieFragment.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379486196262" ignored="false" />
+    <file path="/Qualities.java" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379252623837" ignored="false" />
+    <file path="/movie_layout.xml" changelist="6da1e882-0b06-4b96-b264-b94d1d0bd46c" time="1379315049638" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,152 +153,112 @@
     <favorites_list name="AmoviesParser" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5370518">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="ResultActivity.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="98" column="0" selection-start="3337" selection-end="3337" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="e#2945#3084#0" expanded="true" />
-                    <element signature="e#3073#3074#0" expanded="true" />
-                    <element signature="e#4090#4243#0" expanded="true" />
-                    <element signature="e#4232#4233#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="GetEpisodesTask.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/GetEpisodesTask.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="0" selection-start="427" selection-end="427" vertical-scroll-proportion="0.50328946">
-                  <folding>
-                    <element signature="e#831#1237#0" expanded="true" />
-                    <element signature="e#1226#1227#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="result_activity.xml" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/res/layout/result_activity.xml">
-              <provider editor-type-id="android-designer">
-                <state />
-              </provider>
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="58" selection-start="624" selection-end="624" vertical-scroll-proportion="-8.4">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="result_list_item.xml" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/res/layout-sw600dp/result_list_item.xml">
-              <provider editor-type-id="android-designer">
-                <state />
-              </provider>
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="36" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ResultEpisodesAdapter.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="142" column="32" selection-start="5554" selection-end="5554" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AmoviesHelpers.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesHelpers.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="22" column="0" selection-start="662" selection-end="662" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Serial.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/Serial.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="31" column="29" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AmoviesEntry.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesEntry.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="25" selection-start="468" selection-end="468" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="SerialViewFragment.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/SerialViewFragment.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="60" column="0" selection-start="1766" selection-end="1766" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AmoviesFragment.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesFragment.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="54" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AmoviesParser.java" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParser.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="94" column="0" selection-start="3212" selection-end="3212" vertical-scroll-proportion="0.83076924">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-              <provider editor-type-id="android-designer">
-                <state />
-              </provider>
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="9" column="84" selection-start="460" selection-end="460" vertical-scroll-proportion="-5.4">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Movie.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/Movie.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="38" column="25" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="ResultActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="128" column="0" selection-start="4458" selection-end="4458" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SerialViewFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/SerialViewFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="53" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AmoviesParser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="110" column="33" selection-start="3857" selection-end="3857" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="movie_layout.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/movie_layout.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="49" selection-start="1485" selection-end="1485" vertical-scroll-proportion="-16.72">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MovieFragment.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/MovieFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="91" column="54" selection-start="2850" selection-end="2850" vertical-scroll-proportion="0.5575221">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2703#2908#0" expanded="true" />
+                <element signature="e#2897#2898#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="movie_property_layout.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/movie_property_layout.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResultEpisodesAdapter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="77" column="40" selection-start="2851" selection-end="2851" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Movie.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/Movie.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="4" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Qualities.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/Qualities.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AmoviesEntry.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesEntry.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="43" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -312,22 +276,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/OpenVideoDialog.java" />
-        <option value="$PROJECT_DIR$/res/layout-sw600dp/result_list_item.xml" />
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesHelpers.java" />
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java" />
         <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmovieParser.java" />
         <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesFragment.java" />
         <option value="$PROJECT_DIR$/res/layout/result_activity.xml" />
         <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/SerialViewFragment.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesEntry.java" />
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Serial.java" />
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParser.java" />
-        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Movie.java" />
         <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/GetEpisodesTask.java" />
+        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Serial.java" />
+        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Qualities.java" />
+        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesEntry.java" />
+        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParser.java" />
+        <option value="$PROJECT_DIR$/res/layout/movie_property_layout.xml" />
+        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/Movie.java" />
+        <option value="$PROJECT_DIR$/res/layout/movie_layout.xml" />
+        <option value="$PROJECT_DIR$/src/com/abonec/AmoviesParser/MovieFragment.java" />
       </list>
     </option>
   </component>
@@ -822,13 +786,15 @@
     <frame x="64" y="-4" width="1303" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3195219" sideWeight="0.616" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2247012" sideWeight="0.616" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.6016" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.384" sideWeight="0.4996016" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.384" sideWeight="0.4996016" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3984" sideWeight="0.5003984" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -838,11 +804,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946378" sideWeight="0.67022413" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24541833" sideWeight="0.616" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24581006" sideWeight="0.616" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3216281" sideWeight="0.6016" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32242617" sideWeight="0.6016" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -917,6 +881,16 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/res/layout/result_activity.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="58" selection-start="624" selection-end="624" vertical-scroll-proportion="0.6542056">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesHelpers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="0" selection-start="662" selection-end="662" vertical-scroll-proportion="0.0">
@@ -924,26 +898,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="32" selection-start="5554" selection-end="5554" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/result_activity.xml">
+    <entry file="file://$PROJECT_DIR$/res/layout-sw600dp/result_list_item.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="58" selection-start="624" selection-end="624" vertical-scroll-proportion="-8.4">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/android-sdk/sources/android-14/java/lang/Runnable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="16" selection-start="1198" selection-end="1198" vertical-scroll-proportion="0.45714286">
+        <state line="10" column="36" selection-start="390" selection-end="390" vertical-scroll-proportion="0.046728972">
           <folding />
         </state>
       </provider>
@@ -951,27 +911,6 @@
     <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="54" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="0.048701297">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/SerialViewFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="1766" selection-end="1766" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/android-sdk/sources/android-14/java/lang/StringBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="0" selection-start="6972" selection-end="6972" vertical-scroll-proportion="0.33128834">
           <folding />
         </state>
       </provider>
@@ -986,62 +925,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="25" selection-start="468" selection-end="468" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/Serial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="29" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0">
+        <state line="61" column="28" selection-start="1676" selection-end="1676" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="3337" selection-end="3337" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#2945#3084#0" expanded="true" />
-            <element signature="e#3073#3074#0" expanded="true" />
-            <element signature="e#4090#4243#0" expanded="true" />
-            <element signature="e#4232#4233#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/android-sdk/sources/android-14/android/os/AsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="0" selection-start="8424" selection-end="8424" vertical-scroll-proportion="0.0">
+        <state line="128" column="0" selection-start="4458" selection-end="4458" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/Movie.java">
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/SerialViewFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="25" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0">
+        <state line="72" column="53" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="43" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/ResultEpisodesAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="40" selection-start="2851" selection-end="2851" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="33" selection-start="3857" selection-end="3857" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/movie_property_layout.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/Qualities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/GetEpisodesTask.java">
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/Movie.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="427" selection-end="427" vertical-scroll-proportion="0.50328946">
+        <state line="49" column="4" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#831#1237#0" expanded="true" />
-            <element signature="e#1226#1227#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/AmoviesParser.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/movie_layout.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="0" selection-start="3212" selection-end="3212" vertical-scroll-proportion="0.83076924">
+        <state line="39" column="49" selection-start="1485" selection-end="1485" vertical-scroll-proportion="-16.72">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/abonec/AmoviesParser/MovieFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="54" selection-start="2850" selection-end="2850" vertical-scroll-proportion="0.5575221">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2703#2908#0" expanded="true" />
+            <element signature="e#2897#2898#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
