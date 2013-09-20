@@ -78,7 +78,7 @@ public class AmoviesParser {
             movie.posterUrl = tagNode.getAttributeByName("src");
         }
 
-        movie.vkLink = getFirstNode(movie.parser, "//li[@class=\"films_if\"]/iframe").getAttributeByName("src");
+        movie.vkLink = getFirstNode(movie.parser, "//li[@class=\"films_if\"]//iframe").getAttributeByName("src");
         try {
             Object[] nodes = movie.parser.evaluateXPath("//article[@class=\"post_full\"]/ul[@class=\"post_info ul_clear\"]/li");
             if (nodes.length > 0){
@@ -144,9 +144,8 @@ public class AmoviesParser {
         AmoviesEntry entry = null;
         String content = getContent(amoviesUrl);
         try {
-//            cleaner.clean(content).evaluateXPath("//li[@class=\"films_if\"]/iframe")[0].getAttributeByName("src")
             TagNode parser = cleaner.clean(content);
-            Object[] film_nodes = parser.evaluateXPath("//li[@class=\"films_if\"]/iframe");
+            Object[] film_nodes = parser.evaluateXPath("//li[@class=\"films_if\"]//iframe");
             if(film_nodes.length > 0){
                 entry = new Movie(amoviesUrl, content, parser);
             }else{
